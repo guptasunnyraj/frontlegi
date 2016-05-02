@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="profile">
+<head>
+    <title>Bootstrap Case</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="boo/css/bootstrap.min.css">
+    <script src="jquery-1.11.2.min.js"></script>
+    <script src="boo/js/bootstrap.min.js"></script>
+    <script src="boo/js/angular.min.js"></script>
+    <script src="boo/js/app.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body ng-controller="ReviewPanelController as reviewCtrl">
+
+<nav class="navbar navbar-custom">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Legistify</a>
+        </div>
+        <div id="navbarCollapse" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Documents</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact Us</a></li>
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="form"  ng-hide="reviewCtrl.profileflag">
+    <div class="container-fluid">
+        <div class="row" style="margin-top:10%">
+            <div class="col-sm-6 col-sm-offset-3 form-group">
+                <div class="row">
+                    <div class="col-sm-4 col1">
+                        <ul>
+                            <li class="t1">
+                                <button class="btn btn-default">User Details</button>
+                                <span class="badge"></span></li>
+                            <li>
+                                <button class="btn btn-default">Legal Info</button>
+                            </li>
+                            <li>
+                                <button class="btn btn-default">Basic Details</button>
+                            </li>
+                            <li>
+                                <button class="btn btn-default">Bar Details</button>
+                            </li>
+                            <li></li>
+                            <li></li>
+                            <li>*Required Fields</li>
+                        </ul>
+                    </div>
+
+                    <div class="col-sm-8 maincol fix">
+                        <form name="rf">
+                            <div class="act1 " ng-hide="check>0">
+
+                                <div class="row">
+                                    <div class="col-sm-3 col2">
+                                        <label for="name">*Name:</label></div>
+                                    <div class="col-sm-9 col3">
+                                        <input type="text" class="form-control" name="Name" placeholder="Enter Name"
+                                               ng-model="reviewCtrl.review.name" ng-required="true"/>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-3 col2">
+                                        <label for="email">*Email:</label></div>
+                                    <div class="col-sm-9 col3">
+                                        <input type="email" class="form-control" id="Email" placeholder="Enter email"
+                                               name="email"
+                                               ng-model="reviewCtrl.review.email" ng-required="true">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-3 col2">
+                                        <label for="username">*Username:</label></div>
+                                    <div class="col-sm-9 col3">
+                                        <input type="text" class="form-control" name="Username"
+                                               placeholder="Enter Username(Atleast 2 Chars)"
+                                               ng-model="reviewCtrl.review.username"
+                                               ng-required="true" pattern=".{2,}">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-3 col2">
+                                        <label for="pwd">*Password:</label></div>
+                                    <div class="col-sm-9 col3">
+                                        <input type="password" class="form-control" name="Password"
+                                               placeholder="Enter Password(Atleast 6 Chars)"
+                                               ng-model="reviewCtrl.review.password"
+                                               ng-required="true" pattern=".{6,}">
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-3 col2">
+                                        <label for="date">*DOB:</label></div>
+                                    <div class="col-sm-9 col3">
+                                        <input type="date" class="form-control" id="date" name="Date"
+                                               placeholder="Enter Date Of Birth" ng-model="reviewCtrl.review.dob"
+                                               ng-required="true">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-3 col2">
+                                        <label>*Gender:</label></div>
+                                    <div class="col-sm-9 col3">
+
+                                        <label class="radio-inline">
+                                            <input type="radio" name="Gender" ng-model="reviewCtrl.review.genderm"
+                                                   value="M">Male
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="Gender" ng-model="reviewCtrl.review.genderf"
+                                                   value="F">Female
+                                        </label>
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-3 col2">
+                                        <label for="mobile">*Mobile:</label></div>
+                                    <div class="col-sm-9 col3">
+                                        <input type="number" class="form-control" id="mobile" name="Mobile"
+                                               placeholder="Enter Mobile Number(10 Digits):"
+                                               ng-model="reviewCtrl.review.number"
+                                               ng-required="true" pattern=".{10,11}">
+                                    </div>
+                                </div>
+
+                                <div class="row" id="rep2" ng-repeat="education in reviewCtrl.education">
+                                    <div class="col-sm-3 col2">
+                                        <label>*Education:</label></div>
+                                    <div class="col-sm-9 col3">
+                                        <input type="text" class="form-control" name="college"
+                                               ng-model="education.college" placeholder="Enter Law College"
+                                               ng-required="true"><br>
+                                        <input type="text" class="form-control" name="degree"
+                                               ng-model="education.degree" placeholder="Degree" ng-required="true"><br>
+                                        <input type="number" class="form-control" name="CollegeYear"
+                                               ng-model="education.year" placeholder="Year" ng-required="true"
+                                               pattern=".{4,}">
+
+                                    </div>
+                                </div>
+
+                                <div class="row rep3">
+                                    <div class="col-sm-3 col2"></div>
+                                    <div class="col-sm-9 col3">
+                                        <button class="btn btn-default rep" ng-click="reviewCtrl.addeducation()">+Add
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                        <form name="rf1">
+                            <div class="act2" ng-show="check==1 || check==4">
+
+
+                                <div class="row">
+                                    <div class="col-sm-3 col2">
+                                        <label>*Practice:</label></div>
+                                    <div class="col-sm-9 col3">
+                                        <select class="form-control" ng-model="reviewCtrl.review.practice"
+                                                ng-required="true" multiple="multiple" id="mul">
+                                            <option value="Administrative law">Administrative law</option>
+                                            <option value="Admiralty law">Admiralty law</option>
+                                            <option value="Advertising law">Advertising law</option>
+                                            <option value="Agency law">Agency law</option>
+                                            <option value="Appellate practice">Appellate practice</option>
+                                            <option value="Alternative dispute resolution">Alternative dispute resolution</option>
+                                            <option value="Aviation law">Aviation law</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-3 col2">
+                                        <label>*Court:</label></div>
+                                    <div class="col-sm-9 col3">
+
+                                        <div class="row">
+                                            <div class="col-sm-8" ng-repeat="court in reviewCtrl.court">
+                                                <input type="text" class="form-control" name="Court"
+                                                       ng-model="court.court" placeholder="Enter Court"
+                                                       ng-required="true"><br>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <button class="btn btn-default rep5" ng-click="reviewCtrl.addcourt()">
+                                                    +Add
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-sm-3 col2">
+                                        <label for="state">*State:</label></div>
+                                    <div class="col-sm-9 col3">
+                                        <input type="text" class="form-control" ng-model="reviewCtrl.review.courtstate"
+                                               name="CourtState" placeholder="Enter State" ng-required="true">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-3 col2">
+                                        <label for="office">*Office Address:</label></div>
+                                    <div class="col-sm-9 col3">
+                                        <input type="text" class="form-control" ng-model="reviewCtrl.review.courtoffice"
+                                               name="CourtOffice" placeholder="Enter Office Address"
+                                               ng-required="true">
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                        <form name="rf2">
+
+                        </form>
+                        <form name="rf2">
+                            <div class="act3 " ng-show="check==2 || check==5">
+
+                                <div class="row">
+                                    <div class="col-sm-3 col2">
+                                        <label>*Summary:</label></div>
+                                    <div class="col-sm-9 col3">
+                                        <textarea rows="3" class="form-control" name="Summary" pattern=".{160,}"
+                                                  ng-click="reviewCtrl.review.summary" ng-required="true"
+                                                  placeholder="160 characters minimum"></textarea>
+                                    </div>
+                                </div>
+
+
+                                <div class="row" ng-repeat="exp in reviewCtrl.exp">
+                                    <div class="col-sm-3 col2">
+                                        <label>*Experience:</label></div>
+                                    <div class="col-sm-9 col3">
+                                        <input type="text" class="form-control" ng-model="exp.job" name="job"
+                                               placeholder="Job Title" ng-required="true"><br>
+                                        <input type="text" class="form-control" ng-model="exp.company" name="company"
+                                               placeholder="Company Name" ng-required="true"><br>
+                                        <div class="row">
+                                            <div class="col-sm-2 " style="padding-top: 2.6%">
+                                                From:
+                                            </div>
+                                            <div class="col-sm-4"><input type="number" ng-model="exp.from" name="from"
+                                                                         pattern=".{4,}"
+                                                                         class=" form-control" placeholder="Year"
+                                                                         ng-required="true">
+                                            </div>
+                                            <div class="col-sm-2" style="padding-top: 2.6%">
+                                                To:
+                                            </div>
+                                            <div class="col-sm-4"><input type="number" ng-model="exp.to" name="to"
+                                                                         pattern=".{4,}"
+                                                                         class=" form-control" placeholder="Year"
+                                                                         ng-required="true" ng-blur="reviewCtrl.check(exp.from,exp.to)">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-3 col2"></div>
+                                    <div class="col-sm-9 col3">
+                                        <button class="btn btn-default"
+                                                ng-click="reviewCtrl.addexp()">+Add
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="row" ng-repeat="honors in reviewCtrl.honors">
+                                    <div class="col-sm-3 col2">
+                                        <label>Honors:</label></div>
+                                    <div class="col-sm-9 col3">
+                                        <input type="text" class="form-control" ng-model="honors.name"
+                                               name="Honors Name"
+                                               placeholder="Name"><br>
+                                        <input type="text" class="form-control" ng-model="honors.granted"
+                                               name="Honors Granted By"
+                                               placeholder="Granted By"><br>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <input type="number" class="form-control" pattern=".{4,}" name=" Year"
+                                                       ng-model="honors.year" placeholder="Year">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-3 col2"></div>
+                                    <div class="col-sm-9 col3">
+                                        <button class="btn btn-default"
+                                                ng-click="reviewCtrl.addhonors()">+Add
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="row" ng-repeat="pub in reviewCtrl.pub">
+                                    <div class="col-sm-3 col2">
+                                        <label>*Publications:</label></div>
+                                    <div class="col-sm-9 col3">
+                                        <input type="text" class="form-control" ng-model="pub.title" placeholder="Title"
+                                               name="publication title"
+                                               ng-required="true"><br>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <input type="number" class="form-control" pattern=".{4,}" name="
+                                                       Publication Year"
+                                                       ng-model="pub.year" placeholder="Year" ng-required="true">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-sm-3 col2"></div>
+                                    <div class="col-sm-9 col3">
+                                        <button class="btn btn-default"
+                                                ng-click="reviewCtrl.addpub()">+Add
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                        <form name="rf3">
+                            <div class="act4 " ng-show="check==3 || check==6">
+
+
+                                <div class="row">
+                                    <div class="col-sm-3 col2">
+                                        <label>*State:</label></div>
+                                    <div class="col-sm-9 col3">
+                                        <select class="form-control" ng-model="reviewCtrl.review.state"
+                                                ng-required="true">
+                                            <option value="Delhi">Delhi</option>
+                                            <option value="Punjab">Punjab</option>
+                                            <option value="Rajasthan">Rajasthan</option>
+                                            <option value="Gujurat">Gujarat</option>
+                                            <option value="Goa">Goa</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-sm-3 col2">
+                                        <label>*Bar ID:</label></div>
+                                    <div class="col-sm-9 col3">
+                                        <input type="text" ng-model="reviewCtrl.review.barid" class="form-control"
+                                               name="barID"
+                                               id="bar" placeholder="Enter Bar ID" ng-required="true">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3 col2">
+                                        <label>*Year:</label></div>
+                                    <div class="col-sm-9 col3">
+                                        <div class="row">
+                                            <div class="col-sm-7">
+                                                <input type="number" ng-model="reviewCtrl.review.baryear"
+                                                       name="bar Year" pattern=".{4,}"
+                                                       class=" form-control" id="yearbar" placeholder="Year"
+                                                       ng-required="true">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                 <div class="col-sm-12">
+                                    <input id="file" type="file" file-model="reviewCtrl.file" required>
+                                    <button class="btn" ng-click="reviewCtrl.upload()">Upload</button>
+                                    </div>
+                                </div>
+
+                                
+
+
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2 col-sm-offset-5 mid1" ng-show="check==1 || check==4">
+                <button class="btn btn-default" ng-click="check=0">Back</button>
+                <button class="btn btn-default" ng-click="rf1.$valid ? check=2:check=4">Next</button>
+            </div>
+            <div class="col-sm-2 col-sm-offset-5 mid2" ng-show="check==2 || check==5">
+                <button class="btn btn-default" ng-click="check=1">Back</button>
+                <button class="btn btn-default" ng-click="rf2.$valid ? check=3:check=5">Next</button>
+            </div>
+            <div class="col-sm-2 col-sm-offset-5 start" ng-hide="check>0">
+                <button class="btn btn-default" ng-click="rf.$valid ? check=1:check=0">Next</button>
+            </div>
+            <div class="col-sm-2 col-sm-offset-5 end" ng-show="check==3 || check==6">
+                <button class="btn btn-default" ng-click="check=2">Back</button>
+                <button class="btn btn-default" type="submit" ng-click="rf3.$valid ? reviewCtrl.addFinal():check=6">Submit
+                </button>
+
+            </div>
+        </div>
+    </div>
+    <div class="text-danger v">
+    <ul ng-show="check==0">
+        <li ng-repeat="(key, errors) in rf.$error track by $index"><strong>{{ key }}</strong> errors
+            <ul>
+                <li ng-repeat="e in errors">{{ e.$name }} has an error: <strong>{{ key }}</strong>.</li>
+            </ul>
+        </li>
+    </ul>
+    <ul ng-show="check==4">
+        <li ng-repeat="(key, errors) in rf1.$error track by $index"><strong>{{ key }}</strong> errors
+            <ul>
+                <li ng-repeat="e in errors">{{ e.$name }} has an error: <strong>{{ key }}</strong>.</li>
+            </ul>
+        </li>
+    </ul>
+    <ul ng-show="check==5">
+        <li ng-repeat="(key, errors) in rf2.$error track by $index"><strong>{{ key }}</strong> errors
+            <ul>
+                <li ng-repeat="e in errors">{{ e.$name }} has an error: <strong>{{ key }}</strong>.</li>
+            </ul>
+        </li>
+    </ul>
+    <ul ng-show="check==6">
+        <li ng-repeat="(key, errors) in rf3.$error track by $index"><strong>{{ key }}</strong> errors
+            <ul>
+                <li ng-repeat="e in errors">{{ e.$name }} has an error: <strong>{{ key }}</strong>.</li>
+            </ul>
+        </li>
+    </ul>
+    </div>
+</div>
+
+<div class="profile" ng-show="reviewCtrl.profileflag">
+    <div class="container-fluid">
+        <div class="im">
+            <div class="layer"><br>
+                <div class="row">
+                    <div class="col-sm-1 col-sm-offset-2"></div>
+                    <div class="col-sm-5">
+                            <div class="row name h1  text-center">
+                                {{reviewCtrl.review.name}}
+                            </div>
+                        <div class="row">
+                            <b></b>
+                            <div class="col-sm-6 next h3">
+                                Practice Areas:<br></b>
+                                <div ng-repeat="x in reviewCtrl.review.practice" class="name3">{{x}}</div>
+                            </div>
+                            <div class="col-sm-6 next h3">
+                                <i class="glyphicon glyphicon-map-marker"></i>&nbsp;&nbsp;&nbsp;&nbsp; {{reviewCtrl.review.state}}<br>
+                                <i class="glyphicon glyphicon-user glyphicon-signal"></i><i class="glyphicon glyphicon-user"></i> 12 years Experience 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row line"></div>
+                <div class="row">
+                    <div class="col-sm-3 col-sm-offset-3 text-center">
+                        <div class="row">
+                            <span class="h3">User Review</span>
+                        </div>
+                        <div class="row">
+                            <span ng-repeat="i in reviewCtrl.getNumber(5) track by $index" class="glyphicon glyphicon-star"></span>
+                        </div>
+                        <div class="row">
+                            <span>(From 1000 reviews)</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 text-center">
+                        <div class="row">
+                            <span class="h3">Legistify ratings</span>
+                        </div>
+                        <div class="row">
+                            <span ng-repeat="i in reviewCtrl.getNumber(5) track by $index" class="glyphicon glyphicon-star"></span>
+                        </div>
+                        <div class="row">
+                            <span>(5.0 out of 5)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-1 col-sm-offset-5 h1 tab"><a href="#" ng-click="reviewCtrl.selectTab(1)" ng-class="{tabb:reviewCtrl.isSelected(1)}">About</a></div>
+            <div class="col-sm-1 h1 tab"><a href="#" ng-click="reviewCtrl.selectTab(2)" ng-class="{tabb:reviewCtrl.isSelected(2)}">Reviews</a></div>
+        </div>
+
+
+        <div class="row">
+            <!-- About -->
+            <div class="col-sm-8 col-sm-offset-2" ng-show="reviewCtrl.isSelected(1)">
+                <!-- All details here -->
+                <div class="row">
+                    <div class="col-sm-5 uline">
+                        <span class="h3">Basic Details:</span>
+                    </div>
+                    <div class="col-sm-5 col-sm-offset-2 uline">
+                        <span class="h3">legistify Contribution:</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-5">
+                        <div class="row text-nowrap">
+                            <div class="col-sm-3"><span class="h4">Gender:</span></div>
+                            <div class="col-sm-9"><span class="h4">{{reviewCtrl.getGender()}}</span></div>
+                        </div>
+                        <div class="row text-nowrap">
+                            <div class="col-sm-3"><span class="h4">D.O.B:</span></div>
+                            <div class="col-sm-9"><span class="h4">{{reviewCtrl.review.dob|date:'MM/dd/yyyy'}}</span></div>
+                        </div>
+                        <div class="row text-nowrap">
+                            <div class="col-sm-3"><span class="h4">Court:</span></div>
+                            <div class="col-sm-9">
+                                <div ng-repeat="court in reviewCtrl.review.court">
+                                    <span class="h4">{{court.court}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5 col-sm-offset-2 text-nowrap">
+                        <div class="row">
+                            <div class="col-sm-6 col-sm-offset-1 box"><span class="h4">Legal Answers</span></div>
+                            <div class="col-sm-5"><span class="h4">10</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-sm-offset-1 box"><span class="h4">Legal Articles</span></div>
+                            <div class="col-sm-5"><span class="h4">12</span></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Education -->
+                <div class="row">
+                    <div class="uline">
+                        <span class="h3">Education:</span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-8"><strong class="h4"><b>College Name</b></strong></div>
+                    <div class="col-sm-2"><strong class="h4"><b>Degree</b></strong></div>
+                    <div class="col-sm-2"><strong class="h4"><b>Graduated</b></strong></div>
+                </div>
+                <div ng-repeat="edu in reviewCtrl.review.education">
+                    <div class="row">
+                        <div class="col-sm-8"><strong class="h4">{{edu.college}}</strong></div>
+                        <div class="col-sm-2"><strong class="h4">{{edu.degree}}</strong></div>
+                        <div class="col-sm-2"><strong class="h4">{{edu.year}}</strong></div>
+                    </div>
+                </div>
+
+                <!-- Summary -->
+                <div class="row">
+                    <div class="uline">
+                        <span class="h3">Summary:</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <span class="h4">{{reviewCtrl.review.summary}}</span>
+                </div>
+                
+                <!-- Work Exp -->
+                <div class="row">
+                    <div class="uline">
+                        <span class="h3">Work Experience:</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8"><strong class="h4"><b>Title</b></strong></div>
+                    <div class="col-sm-2"><strong class="h4"><b>Company Name</b></strong></div>
+                    <div class="col-sm-2"><strong class="h4"><b>Duration</b></strong></div>
+                </div>
+                <div ng-repeat="exp in reviewCtrl.review.exp">
+                    <div class="row">
+                        <div class="col-sm-8"><strong class="h4">{{exp.job}}</strong></div>
+                        <div class="col-sm-2"><strong class="h4">{{exp.company}}</strong></div>
+                        <div class="col-sm-2"><strong class="h4">{{exp.from+"-"+exp.to}}</strong></div>
+                    </div>
+                </div>
+                <!-- Honours -->
+                <div class="row">
+                    <div class="uline">
+                        <span class="h3">Honours:</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8"><strong class="h4"><b>Title</b></strong></div>
+                    <div class="col-sm-2"><strong class="h4"><b>Granted By:</b></strong></div>
+                    <div class="col-sm-2"><strong class="h4"><b>Year</b></strong></div>
+                </div>
+                <div ng-repeat="honour in reviewCtrl.review.honors">
+                    <div class="row">
+                        <div class="col-sm-8"><strong class="h4">{{honour.name}}</strong></div>
+                        <div class="col-sm-2"><strong class="h4">{{honour.granted}}</strong></div>
+                        <div class="col-sm-2"><strong class="h4">{{honour.year}}</strong></div>
+                    </div>
+                </div>
+                <!-- Publications -->
+                <div class="row">
+                    <div class="uline">
+                        <span class="h3">Publications:</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-10"><strong class="h4"><b>Title</b></strong></div>
+                    <div class="col-sm-2"><strong class="h4"><b>Year</b></strong></div>
+                </div>
+                <div ng-repeat="pub in reviewCtrl.review.pub">
+                    <div class="row">
+                        <div class="col-sm-10"><strong class="h4">{{pub.title}}</strong></div>
+                        
+                        <div class="col-sm-2"><strong class="h4">{{pub.year}}</strong></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Reviews -->
+            <div class="col-sm-8 col-sm-offset-2" ng-show="reviewCtrl.isSelected(2)">
+                    
+                    <div class="row">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-5"></div>
+                        <div class="col-sm-3">
+                            <a href="#" class="btn btn-default" ng-click="reviewCtrl.changeflag()">
+                                <i class="glyphicon glyphicon-pencil">
+                                    <span class="h3"><b>Write a Review</b></span>
+                                </i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="review" ng-show="reviewCtrl.writeflag">
+                        <div class="row">
+                            <div class="row">
+                                <form class="inp" name="formrev">
+                                    <input class="form-control" type="text" ng-model="reviewCtrl.revv.name" placeholder="Name" required />
+                                    <select class="form-control" ng-options="stars for stars in [5,4,3,2,1]" default="Rate the product" title="Stars" ng-model="reviewCtrl.revv.stars" required></select>
+                                    <span ng-repeat="i in reviewCtrl.getNumber(reviewCtrl.revv.stars) track by $index" class="glyphicon glyphicon-star"></span>
+                                    <textarea type="text" ng-model="reviewCtrl.revv.subject" placeholder="Review" class="form-control" required></textarea>
+                                    <a href="#" class="btn btn-default" ng-click="formrev.$valid ? reviewCtrl.addReview() : alert('Fill the form')"><span>Submit</span></a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-repeat="review in reviewCtrl.review.rev" class="review">
+                        <div class="row">
+                            <div class="row">
+                                <div class="col-sm-1"><img src="images/a.png" class="imgrev"></div>
+                                <div class="col-sm-11">
+                                    <div class="row">
+                                        <span class="h4">{{review.name}}</span>
+                                        <span ng-repeat="i in reviewCtrl.getNumber(review.stars) track by $index" class="glyphicon glyphicon-star"></span>
+                                    </div>
+                                    <div class="row">
+                                        <span class="h3"><b>Subject</b></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-11">
+                                    <div class="row">
+                                        <span class="h4">{{review.subject}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    ($(".fix").height(($(".col1").height())));
+    $(document).ready(function () {
+
+        var last_valid_selection = null;
+
+        $('#mul').change(function (event) {
+            if ($(this).val().length > 4) {
+                alert('You can only choose 4!');
+                $(this).val(last_valid_selection);
+            } else {
+                last_valid_selection = $(this).val();
+            }
+        });
+    });
+
+</script>
+
+
+</body>
+</html>
