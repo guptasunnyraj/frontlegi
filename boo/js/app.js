@@ -52,7 +52,7 @@ var data = {};
     this.honors=[{"name":"","granted":"","year":""}];
     this.pub=[{"title":"","year":""}];
     
-    this.rev=[{"name":"Sharad","stars":4,"subject":"lorel ipsum"},{"name":"Sharad N Darji","stars":3,"subject":"lorel ipsum dskjdls dskjds kdjsld djskldn djskld"}]
+    this.rev=[];
     this.revv={};
     this.review['rev']=(this.rev);
 
